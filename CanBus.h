@@ -40,10 +40,10 @@ class CanBus {
 
   public:
       CanBus() {}
-      CanBus(MCP_CAN* mcp, StepperController* sc, uint8_t motor_id);
+      CanBus(MCP_CAN* mcp, StepperController* sc);
 
       void setup();
-
+      void setting_id(uint8_t motor_id);
       void writeCalibrationResult(uint8_t result);
       void writePosition();
       void writeDiagnostics(uint8_t control_mode, unsigned int driver_temperature);

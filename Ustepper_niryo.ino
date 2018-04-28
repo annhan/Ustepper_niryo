@@ -26,7 +26,7 @@ uint8_t motor_id = 6;
 uStepper stepper;
 StepperController stepper1(&stepper);
 MCP_CAN can_driver(8);
-CanBus canBus(&can_driver, &stepper1, motor_id);
+CanBus canBus(&can_driver, &stepper1);
 unsigned long timebegin=0;
 void parseData();
 void nhanuart();
@@ -38,10 +38,10 @@ void saveStepConf(void);
 unsigned int driver_temperature = 530;
 
 unsigned long time_last_write_position = micros();
-unsigned long write_frequency_position = 80000; // 12.5Hz
+unsigned long write_frequency_position = 50000; // 12.5Hz
 
 unsigned long time_last_write_diagnostics = micros();
-unsigned long write_frequency_diagnostics = 2000000; // 0.5Hz
+unsigned long write_frequency_diagnostics = 20000000; // 0.5Hz
 
 //unsigned long time_last_read_temperature = micros();
 //unsigned long read_temperature_frequency = 2000000; // 0.5 Hz
@@ -60,6 +60,7 @@ void setup(void)
   EEPROM.begin();
  loadStepConf();
  canBus.setup();
+ canBus.setting_id(motor_id);
  stepper.setup(); 
 
   //stepper.setup(PID,SIXTEEN,10,5,1.0,0.02,0.006);     //Initiate the stepper object to use closed loop PID control QUARTER
@@ -79,7 +80,7 @@ void setup(void)
 bool action_available = true;
 void loop(void)
 { nhanuart();
-  if (micros() - timebegin >= 3000000) {
+  /*if (micros() - timebegin >= 3000000) {
     timebegin=micros();
     Serial.print("Encode pos :");
     Serial.println((stepper.encoder.getAngleMoved()*16*200)/360); 
@@ -94,7 +95,7 @@ void loop(void)
    Serial.print("Magnet : "); 
     Serial.println(stepper.encoder.detectMagnet());
     Serial.println("------------");
-  }
+  }*/
   action_available = true;
 stepper1.update();
 

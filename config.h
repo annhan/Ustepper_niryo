@@ -83,7 +83,7 @@ extern volatile long motor_position_steps;
  *    ----------- CAN bus -------------
  */
 
-#define CAN_BROADCAST_ID 5
+#define CAN_BROADCAST_ID 9
 
 #define CAN_CMD_POSITION     0x03
 #define CAN_CMD_TORQUE       0x04

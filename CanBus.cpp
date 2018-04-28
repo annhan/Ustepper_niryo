@@ -19,11 +19,11 @@
 #include "CanBus.h"
 volatile long motor_position_steps=0;
 long vitritam=0;
-CanBus::CanBus(MCP_CAN* mcp, StepperController* sc, uint8_t motor_id) 
+CanBus::CanBus(MCP_CAN* mcp, StepperController* sc) 
 {
   can_driver = mcp;
   stepper_controller = sc;
-  this->motor_id = motor_id;
+ 
 }
 
 void CanBus::setup()
@@ -50,7 +50,9 @@ void CanBus::setup()
   can_driver->setMode(MCP_NORMAL);
   //SerialUSB.println("MCP2515 CAN started");
 }
-
+void CanBus::setting_id(uint8_t motor_id){
+   this->motor_id = motor_id;
+}
 /*
  * After the motor has finished (successfully or not) its calibration,
  * a result is sent back 
