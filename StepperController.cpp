@@ -160,26 +160,49 @@ void StepperController::movestepper(int32_t vitri)
 void StepperController::setNewGoal(long steps)
 {   //if (step_old==steps){
    // long step_diff = steps - current_step_number;
+   // int32_t step_diff = steps - current_step_number;
     goal_step_number = steps ;
     int32_t tam=0;
     tam = steps - motor_position_steps; 
     bool end_motor=ustep->getMotorState();
+    int chieu=0;
+    if (current_step_number>0 && motor_position_steps >0){chieu=1;}
+    else if (current_step_number<0 && motor_position_steps <0){chieu=1;}
+    else chieu=0;
+    Serial.println(chieu);
     if (tam1!=steps){
         //time_last_step=micros();
-       if (tam <0 ){
-         ustep->moveSteps(abs(tam),CW,HARD);  
+       if (tam < 0  ){
+              if (chieu>0){ustep->moveSteps(abs(tam),CCW,HARD);  }
+              else ustep->moveSteps(abs(tam),CW,HARD);  
        }
-       else ustep->moveSteps(abs(tam),CCW,HARD);
+       else
+       {
+                if (chieu>0){ustep->moveSteps(abs(tam),CW,HARD); }
+                else ustep->moveSteps(abs(tam),CCW,HARD); 
+        //ustep->moveSteps(abs(tam),CW,HARD);
+       }
        tam1=steps; 
    }
    else if ((end_motor == 0) && (micros() - time_last_step > 1000000)) { 
    //else if (micros() - time_last_step > 5000000) { 
         time_last_step=micros();
-        if (tam <0 ){
-         ustep->moveSteps(abs(tam),CW,HARD);  
+       /* if (tam <0 ){
+         ustep->moveSteps(abs(tam),CCW,HARD);  
        }
-       else if (tam > 0) ustep->moveSteps(abs(tam),CCW,HARD);
-  }
+       else if (tam > 0) ustep->moveSteps(abs(tam),CW,HARD);*/
+        if (tam < 0  ){
+              if (chieu>0){ustep->moveSteps(abs(tam),CCW,HARD);  }
+              else ustep->moveSteps(abs(tam),CW,HARD);  
+       }
+       else
+       {
+                if (chieu>0){ustep->moveSteps(abs(tam),CW,HARD); }
+                else ustep->moveSteps(abs(tam),CCW,HARD); 
+       }
+        //ustep->moveSteps(abs(tam),CW,HARD);
+       }
+  
 }
 
 /*

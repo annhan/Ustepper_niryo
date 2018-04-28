@@ -35,7 +35,7 @@ bool loadStepConf();
 void saveStepConf(void);
 
 
-unsigned int driver_temperature = 530;
+unsigned int driver_temperature = 630;
 
 unsigned long time_last_write_position = micros();
 unsigned long write_frequency_position = 50000; // 12.5Hz
@@ -80,7 +80,7 @@ void setup(void)
 bool action_available = true;
 void loop(void)
 { nhanuart();
-  /*if (micros() - timebegin >= 3000000) {
+  if (micros() - timebegin >= 3000000) {
     timebegin=micros();
     Serial.print("Encode pos :");
     Serial.println((stepper.encoder.getAngleMoved()*16*200)/360); 
@@ -95,7 +95,7 @@ void loop(void)
    Serial.print("Magnet : "); 
     Serial.println(stepper.encoder.detectMagnet());
     Serial.println("------------");
-  }*/
+  }
   action_available = true;
 stepper1.update();
 
