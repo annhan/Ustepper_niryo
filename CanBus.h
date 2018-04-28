@@ -42,8 +42,8 @@ class CanBus {
       CanBus() {}
       CanBus(MCP_CAN* mcp, StepperController* sc);
 
-      void setup();
-      void setting_id(uint8_t motor_id);
+      void setup(uint8_t motor_id);
+      //void setting_id(uint8_t motor_id);
       void writeCalibrationResult(uint8_t result);
       void writePosition();
       void writeDiagnostics(uint8_t control_mode, unsigned int driver_temperature);

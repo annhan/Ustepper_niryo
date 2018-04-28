@@ -59,8 +59,8 @@ void setup(void)
  
   EEPROM.begin();
  loadStepConf();
- canBus.setup();
- canBus.setting_id(motor_id);
+ canBus.setup(motor_id);
+ //canBus.setting_id();
  stepper.setup(); 
 
   //stepper.setup(PID,SIXTEEN,10,5,1.0,0.02,0.006);     //Initiate the stepper object to use closed loop PID control QUARTER
