@@ -37,7 +37,7 @@ extern volatile long motor_position_steps;
 /*
  *    ----------- AS5600 Position sensor -------------
  */
-
+/*
 #define AS5600_CPR 4096
 #define AS5600_CPR_HALF 2048
 
@@ -75,9 +75,9 @@ extern volatile long motor_position_steps;
 
 #define UMAX_DEFAULT UMAX_25_PERCENT
 #define UMAX_PID     UMAX_50_PERCENT
-
-#define spr 200   
-#define aps 360.0/ spr       // angle per step
+*/
+//#define spr 200   
+//#define aps 360.0/ spr       // angle per step
 
 /*
  *    ----------- CAN bus -------------
@@ -114,7 +114,7 @@ extern volatile long motor_position_steps;
 #define STEPPER_CONTROL_MODE_RELAX    0
 #define STEPPER_CONTROL_MODE_STANDARD 1
 
-#define STEPPER_DELAY_MIN 200
+//#define STEPPER_DELAY_MIN 200
 
 #define STEPPER_DEFAULT_MICRO_STEPS 16
 #define ONE_FULL_STEP 1800

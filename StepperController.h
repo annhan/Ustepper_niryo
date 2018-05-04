@@ -38,7 +38,7 @@ class StepperController {
 
     long current_step_number;
     long goal_step_number;
-    unsigned long tam1=0;
+    int32_t tam1=0;
     unsigned long delay_between_two_updates;
     unsigned long time_last_update; // last controller update time
 
@@ -58,13 +58,14 @@ class StepperController {
     void stop();
 
     uint8_t calibrate();
-
+    uint8_t calib();
+    void chay_motor(int32_t tam);
     void setMicroSteps(uint8_t micro_steps);
     void setMaxEffort(uint8_t effort);
 
     void setControlMode(uint8_t control_mode);
     void relativeMove(long steps, unsigned long delay);
-    void setNewGoal(long steps);
+    void setNewGoal(int32_t steps);
     
     void update();
     void relaxModeUpdate();
